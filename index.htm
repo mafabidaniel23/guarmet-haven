@@ -35,6 +35,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             width: 100%;
+            -webkit-overflow-scrolling: touch;
         }
 
         .container {
@@ -882,7 +883,7 @@
 
         /* Responsive Styles - IMPROVED */
         @media (max-width: 767px) {
-            /* Mobile Menu Styles - IMPROVED */
+            /* Mobile Menu Styles - FIXED SCROLLING ISSUE */
             .nav-links {
                 position: fixed;
                 top: 0;
@@ -898,6 +899,7 @@
                 transition: transform 0.3s ease;
                 z-index: 1001;
                 gap: 30px;
+                overflow-y: auto; /* Allow scrolling if menu is too tall */
             }
 
             .nav-links.active {
@@ -918,11 +920,6 @@
                 display: flex;
                 position: relative;
                 z-index: 1002;
-            }
-
-            /* Hide cart icon on mobile when menu is open */
-            body.menu-open .cart-icon {
-                display: none;
             }
 
             /* Hero adjustments */
@@ -1640,7 +1637,7 @@
             }
         });
 
-        // Mobile Menu Toggle - IMPROVED
+        // Mobile Menu Toggle - FIXED SCROLLING ISSUE
         mobileMenuBtn.addEventListener('click', function() {
             navLinks.classList.toggle('active');
             const icon = mobileMenuBtn.querySelector('i');
@@ -1650,13 +1647,13 @@
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
                 document.body.classList.add('menu-open');
-                // Prevent scrolling when menu is open
-                document.body.style.overflow = 'hidden';
+                // REMOVED the line that was preventing scrolling
+                // document.body.style.overflow = 'hidden'; // This was the problem
             } else {
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
                 document.body.classList.remove('menu-open');
-                document.body.style.overflow = '';
+                // document.body.style.overflow = ''; // This was the problem
             }
         });
 
@@ -1667,7 +1664,7 @@
                 mobileMenuBtn.querySelector('i').classList.remove('fa-times');
                 mobileMenuBtn.querySelector('i').classList.add('fa-bars');
                 document.body.classList.remove('menu-open');
-                document.body.style.overflow = '';
+                // document.body.style.overflow = ''; // This was the problem
             });
         });
 
@@ -1682,7 +1679,7 @@
                     mobileMenuBtn.querySelector('i').classList.remove('fa-times');
                     mobileMenuBtn.querySelector('i').classList.add('fa-bars');
                     document.body.classList.remove('menu-open');
-                    document.body.style.overflow = '';
+                    // document.body.style.overflow = ''; // This was the problem
                 }
             }
         });
@@ -1889,7 +1886,6 @@
                 mobileMenuBtn.querySelector('i').classList.remove('fa-times');
                 mobileMenuBtn.querySelector('i').classList.add('fa-bars');
                 document.body.classList.remove('menu-open');
-                document.body.style.overflow = '';
             }
         });
 
@@ -2088,16 +2084,18 @@
                 mobileMenuBtn.querySelector('i').classList.remove('fa-times');
                 mobileMenuBtn.querySelector('i').classList.add('fa-bars');
                 document.body.classList.remove('menu-open');
-                document.body.style.overflow = '';
             }
         });
 
-        // Prevent horizontal scroll on touch devices
-        document.addEventListener('touchmove', function(e) {
-            if (e.touches.length > 1 || e.scale !== 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
+        // Enable touch scrolling on mobile
+        document.addEventListener('touchstart', function(e) {
+            // Allow touch events to propagate
+        }, { passive: true });
+
+        // Add -webkit-overflow-scrolling for better mobile scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.webkitOverflowScrolling = 'touch';
+        });
     </script>
 </body>
 </html>
