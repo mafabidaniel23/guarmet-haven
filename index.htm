@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gourmet Haven | Fine Dining Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #c62828;
+            --primary-dark: #8e0000;
+            --secondary: #ffd54f;
+            --dark: #212121;
+            --light: #f5f5f5;
+            --gray: #757575;
+            --success: #2e7d32;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            background-color: #ffca28;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--dark);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            /* gap: 2.5rem; */
+
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .category-btn {
+            padding: 10px 25px;
+            margin: 0 10px 10px 0;
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            
+
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .menu-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-item-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .menu-item-content {
+            padding: 20px;
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .menu-item-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .menu-item-price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .menu-item-desc {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .menu-item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            padding: 3px 10px;
+            background-color: #e8f5e9;
+            color: var(--success);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .tag.spicy {
+            background-color: #ffebee;
+            color: var(--primary);
+        }
+
+        .tag.vegetarian {
+            background-color: #e8f5e9;
+            color: var(--success);
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Online Ordering Section */
+        .order-section {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .order-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .order-summary {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .order-summary h3 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            background-color: #eee;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+
+        .order-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary);
+        }
+
+        .payment-option input {
+            margin-right: 10px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        /* Reservation Section */
+        .reservation-section {
+            padding: 80px 0;
+            background-color: var(--dark);
+            color: white;
+        }
+
+        .reservation-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .reservation-form {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-detail i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .contact-map {
+            height: 300px;
+            background-color: #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .review-stars {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--gray);
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .newsletter-form button {
+            padding: 0 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1001;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .cart-modal.active {
+            right: 0;
+        }
+
+        .cart-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-modal-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .close-cart-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .cart-modal-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .cart-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* Success Modal */
+        .success-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1002;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .success-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .success-modal-content {
+            background-color: white;
+            padding: 50px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .success-modal-content i {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .order-container,
+            .about-container,
+            .reservation-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-modal {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container container">
+            <a href="#" class="logo">The <span>Gourmet</span> Haven</a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#order">Order Online</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#reservation">Reservations</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content container">
+            <h1>Experience Culinary Excellence</h1>
+            <p>Indulge in a symphony of flavors crafted by our award-winning chefs, using only the freshest locally-sourced ingredients.</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn">View Our Menu</a>
+
+                <a href="#reservation" class="btn btn-secondary">Book a Table</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            <p class="section-subtitle" style="text-align: center; margin-bottom: 40px; color: var(--gray);">Discover our exquisite selection of dishes, crafted with passion and precision</p>
+            
+            <div class="menu-categories">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="appetizers">Appetizers</button>
+                <button class="category-btn" data-category="mains">Main Courses</button>
+                <button class="category-btn" data-category="desserts">Desserts</button>
+                <button class="category-btn" data-category="drinks">Drinks</button>
+            </div>
+            
+            <div class="menu-items" id="menuItems">
+                <!-- Menu items will be dynamically loaded here -->
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="#order" class="btn">Order Online Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Online Ordering Section -->
+    <section class="order-section" id="order">
+        <div class="container">
+            <h2 class="section-title">Online Ordering</h2>
+            <p class="section-subtitle" style="text-align: center; margin-bottom: 40px; color: var(--gray);">Place your order for pickup or delivery</p>
+            
+            <div class="order-container">
+                <div class="order-summary">
+                    <h3>Your Order</h3>
+                    <div class="cart-items" id="cartItems">
+                        <!-- Cart items will be dynamically loaded here -->
+                        <p id="emptyCartMessage" style="text-align: center; color: var(--gray);">Your cart is empty. Add items from the menu!</p>
+                    </div>
+                    
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <span id="cartTotal">$0.00</span>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <button class="btn" id="checkoutBtn" style="width: 100%;" disabled>Proceed to Checkout</button>
+                    </div>
+                </div>
+                
+                <div class="order-form">
+                    <h3 style="margin-bottom: 20px;">Delivery Information</h3>
+                    <form id="orderForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Delivery Address</label>
+                            <textarea id="address" class="form-control" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="deliveryTime">Preferred Delivery Time</label>
+                                <select id="deliveryTime" class="form-control" required>
+                                    <option value="">Select Time</option>
+                                    <option value="asap">As Soon As Possible</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Order Type</label>
+                                <div style="display: flex; gap: 10px;">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="radio" name="orderType" value="delivery" checked style="margin-right: 5px;"> Delivery
+                                    </label>
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="radio" name="orderType" value="pickup" style="margin-right: 5px;"> Pickup
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Payment Method</label>
+                            <div class="payment-options">
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="credit" required> 
+                                    <i class="fas fa-credit-card" style="margin-right: 10px;"></i> Credit/Debit Card
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="paypal" required> 
+                                    <i class="fab fa-paypal" style="margin-right: 10px;"></i> PayPal
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="cash" required> 
+                                    <i class="fas fa-money-bill-wave" style="margin-right: 10px;"></i> Cash on Delivery
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="instructions">Special Instructions (Optional)</label>
+                            <textarea id="instructions" class="form-control" rows="3" placeholder="Any allergies, dietary restrictions, or specific requests..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;" id="placeOrderBtn">Place Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            <div class="about-container">
+                <div>
+                    <img src="https://interiordesign.net/wp-content/uploads/2023/02/Interior-Design-YOD-Group-Terra-Ukraine-idx230101_boy_Hotel_Dining01.jpg" alt="Restaurant Interior" class="about-img">
+                </div>
+                <div class="about-content">
+                    <h3>A Decade of Culinary Excellence</h3>
+                    <p>Founded in 2013 by Chef Marco Rossi, The Gourmet Haven began as a small family-owned bistro with a passion for authentic Italian cuisine. Over the years, we've expanded our menu to include global flavors while maintaining our commitment to quality and tradition.</p>
+                    <p>Our philosophy is simple: use the freshest ingredients, respect traditional cooking methods, and innovate with creativity. Every dish tells a story, and every meal is an experience.</p>
+                    <p>Today, we're proud to be recognized as one of the city's premier dining destinations, awarded "Best Fine Dining Restaurant" for three consecutive years.</p>
+                    <a href="#reservation" class="btn" style="margin-top: 20px;">Book Your Experience</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section class="reservation-section" id="reservation">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Make a Reservation</h2>
+            <div class="reservation-container">
+                <div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Book Your Table</h3>
+                    <p style="margin-bottom: 20px; color: #bbb;">Secure your spot at The Gourmet Haven for an unforgettable dining experience. We recommend booking in advance, especially for weekends and special occasions.</p>
+                    <div style="background-color: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 8px; margin-top: 30px;">
+                        <h4 style="margin-bottom: 15px;">Hours of Operation</h4>
+                        <p style="margin-bottom: 5px;"><strong>Monday - Thursday:</strong> 11:00 AM - 10:00 PM</p>
+                        <p style="margin-bottom: 5px;"><strong>Friday - Saturday:</strong> 11:00 AM - 11:00 PM</p>
+                        <p><strong>Sunday:</strong> 10:00 AM - 9:00 PM</p>
+                    </div>
+                </div>
+                
+                <div class="reservation-form">
+                    <form id="reservationForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reservationName">Full Name</label>
+                                <input type="text" id="reservationName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservationPhone">Phone Number</label>
+                                <input type="tel" id="reservationPhone" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reservationDate">Date</label>
+                                <input type="date" id="reservationDate" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservationTime">Time</label>
+                                <select id="reservationTime" class="form-control" required>
+                                    <option value="">Select Time</option>
+                                    <option value="17:00">5:00 PM</option>
+                                    <option value="17:30">5:30 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="18:30">6:30 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="19:30">7:30 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                    <option value="20:30">8:30 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="guests">Number of Guests</label>
+                                <select id="guests" class="form-control" required>
+                                    <option value="1">1 Person</option>
+                                    <option value="2">2 People</option>
+                                    <option value="3">3 People</option>
+                                    <option value="4" selected>4 People</option>
+                                    <option value="5">5 People</option>
+                                    <option value="6">6 People</option>
+                                    <option value="7">7 People</option>
+                                    <option value="8">8+ People</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="occasion">Occasion (Optional)</label>
+                                <select id="occasion" class="form-control">
+                                    <option value="">None</option>
+                                    <option value="birthday">Birthday</option>
+                                    <option value="anniversary">Anniversary</option>
+                                    <option value="business">Business Dinner</option>
+                                    <option value="celebration">Celebration</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reservationNotes">Special Requests (Optional)</label>
+                            <textarea id="reservationNotes" class="form-control" rows="3" placeholder="Any special requests or dietary restrictions..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">Reserve Table</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle" style="text-align: center; margin-bottom: 40px; color: var(--gray);">Don't just take our word for it - hear from our satisfied guests</p>
+            
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"The best dining experience I've had in years! The truffle pasta was divine, and the service was impeccable. Can't wait to return!"</p>
+                    <p class="review-author">- Sarah Johnson</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="review-text">"Celebrated our anniversary here and everything was perfect. The ambiance, the food, the wine pairing - everything exceeded expectations."</p>
+                    <p class="review-author">- Michael & Emily Chen</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"As a food critic, I'm rarely impressed, but The Gourmet Haven truly deserves its accolades. The beef Wellington is a masterpiece!"</p>
+                    <p class="review-author">- Robert Garcia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 style="margin-bottom: 30px;">Get In Touch</h3>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Kansanga, Kampala District<br>Kampala, Uganda</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>(256) 555-7890</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@gourmethaven.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Hours</h4>
+                            <p>Mon-Thu: 11am-10pm<br>Fri-Sat: 11am-11pm<br>Sun: 10am-9pm</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="contact-map">
+                        <!-- In a real implementation, you would embed a Google Map here -->
+                        <div style="width: 100%; height: 100%; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: var(--gray);">
+                            <div style="text-align: center;">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d510685.1837109601!2d32.299823701660166!3d0.3855317128514252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbdb875db2889%3A0x1d6a6fac1d2810dc!2sArena%20Mall!5e0!3m2!1sen!2sug!4v1764662837912!5m2!1sen!2sug" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px; background-color: #f9f9f9; padding: 30px; border-radius: 8px;">
+                        <h3 style="margin-bottom: 20px;">Subscribe to Our Newsletter</h3>
+                        <p style="margin-bottom: 15px; color: var(--gray);">Get updates on new menu items, special events, and exclusive offers.</p>
+                        <form class="newsletter-form" id="newsletterForm">
+                            <input type="email" placeholder="Enter your email" required>
+                            <button type="submit" class="btn">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>The Gourmet Haven</h4>
+                    <p style="color: #bbb; margin-bottom: 20px;">Experience culinary excellence in the heart of the city. Award-winning cuisine, exceptional service, and an unforgettable atmosphere.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#order">Order Online</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#reservation">Reservations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#order">Takeout & Delivery</a></li>
+                        <li><a href="#reservation">Private Dining</a></li>
+                        <li><a href="#">Catering Services</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                        <li><a href="#">Events & Parties</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> Kampala Uganda</li>
+                        <li><i class="fas fa-phone" style="margin-right: 10px;"></i> (256) 555-7890</li>
+                        <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> info@gourmethaven.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 The Gourmet Haven. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--primary);"></i> for food lovers everywhere.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart-btn" id="closeCartBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-modal-items" id="cartModalItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        
+        <div class="cart-modal-footer">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                <span>Subtotal:</span>
+                <span id="cartModalSubtotal">$0.00</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                <span>Delivery Fee:</span>
+                <span id="cartModalDelivery">$3.99</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;">
+                <span>Total:</span>
+                <span id="cartModalTotal">$3.99</span>
+            </div>
+            
+            <button class="btn" id="goToCheckoutBtn" style="width: 100%;" disabled>Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Cart Icon -->
+    <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <div class="cart-count" id="cartCount">0</div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-modal-content">
+            <i class="fas fa-check-circle"></i>
+            <h2>Order Confirmed!</h2>
+            <p id="successMessage">Your order has been successfully placed. You will receive a confirmation email shortly.</p>
+            <button class="btn" id="closeSuccessBtn" style="margin-top: 20px;">Continue Shopping</button>
+        </div>
+    </div>
+
+    <script>
+        // Restaurant Data
+        const menuItems = [
+            {
+                id: 1,
+                name: "Truffle Arancini",
+                description: "Crispy risotto balls with black truffle and mozzarella, served with truffle aioli",
+                price: 14.99,
+                category: "appetizers",
+                image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["vegetarian", "signature"]
+            },
+            {
+                id: 2,
+                name: "Burrata & Heirloom",
+                description: "Fresh burrata with heirloom tomatoes, basil pesto, and balsamic reduction",
+                price: 16.99,
+                category: "appetizers",
+                image: "https://images.unsplash.com/photo-1607532941433-304659e8198a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["vegetarian", "gluten-free"]
+            },
+            {
+                id: 3,
+                name: "Beef Tartare",
+                description: "Hand-cut prime beef with capers, shallots, quail egg, and toasted baguette",
+                price: 18.99,
+                category: "appetizers",
+                image: "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2019/9/10/EA1506_steak_tartare_s4x3.jpg.rend.hgtvcom.616.462.suffix/1568141932489.webp",
+                tags: ["Tasty-beef"]
+            },
+            {
+                id: 4,
+                name: "Filet Mignon",
+                description: "8oz grass-fed filet with truffle mashed potatoes and grilled asparagus",
+                price: 42.99,
+                category: "mains",
+                image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["signature"]
+            },
+            {
+                id: 5,
+                name: "Lobster Linguine",
+                description: "Fresh lobster with handmade linguine in a creamy tomato sauce",
+                price: 36.99,
+                category: "mains",
+                image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["seafood", "signature"]
+            },
+            {
+                id: 6,
+                name: "Mushroom Risotto",
+                description: "Creamy arborio rice with wild mushrooms, parmesan, and truffle oil",
+                price: 24.99,
+                category: "mains",
+                image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["vegetarian", "gluten-free"]
+            },
+            {
+                id: 8,
+                name: "Chocolate Lava Cake",
+                description: "Warm chocolate cake with a molten center, served with vanilla bean ice cream",
+                price: 10.99,
+                category: "desserts",
+                image: "https://www.biggerbolderbaking.com/wp-content/uploads/2016/08/IMG_5373.jpg",
+                tags: ["vegetarian"]
+            },
+            {
+                id: 9,
+                name: "Craft Cocktails",
+                description: "Selection of signature cocktails made with premium spirits and fresh ingredients",
+                price: 14.99,
+                category: "drinks",
+                image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["Everyone"]
+            },
+            {
+                id: 10,
+                name: "Wine Selection",
+                description: "Curated selection of red, white, and sparkling wines from around the world",
+                price: 12.99,
+                category: "drinks",
+                image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                tags: ["Sweet-red wine"]
+            }
+        ];
+
+        // Cart State
+        let cart = [];
+        const deliveryFee = 3.99;
+
+        // DOM Elements
+        const navLinks = document.getElementById('navLinks');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const menuItemsContainer = document.getElementById('menuItems');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartCount = document.getElementById('cartCount');
+        const cartModalItems = document.getElementById('cartModalItems');
+        const cartModalSubtotal = document.getElementById('cartModalSubtotal');
+        const cartModalTotal = document.getElementById('cartModalTotal');
+        const cartItems = document.getElementById('cartItems');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const goToCheckoutBtn = document.getElementById('goToCheckoutBtn');
+        const orderForm = document.getElementById('orderForm');
+        const reservationForm = document.getElementById('reservationForm');
+        const newsletterForm = document.getElementById('newsletterForm');
+        const successModal = document.getElementById('successModal');
+        const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+        const successMessage = document.getElementById('successMessage');
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load menu items
+            renderMenuItems('all');
+            
+            // Set min date for reservation to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('reservationDate').setAttribute('min', today);
+            
+            // Load cart from localStorage if available
+            const savedCart = localStorage.getItem('gourmetHavenCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartUI();
+            }
+        });
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // Menu Category Filtering
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Render filtered items
+                const category = this.getAttribute('data-category');
+                renderMenuItems(category);
+            });
+        });
+
+        // Render Menu Items
+        function renderMenuItems(category) {
+            menuItemsContainer.innerHTML = '';
+            
+            const filteredItems = category === 'all' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === category);
+            
+            filteredItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'menu-item';
+                itemElement.setAttribute('data-id', item.id);
+                
+                // Build tags HTML
+                let tagsHtml = '';
+                if (item.tags && item.tags.length > 0) {
+                    tagsHtml = '<div class="menu-item-tags">';
+                    item.tags.forEach(tag => {
+                        const tagClass = tag === 'spicy' ? 'spicy' : tag === 'vegetarian' ? 'vegetarian' : '';
+                        tagsHtml += `<span class="tag ${tagClass}">${tag}</span>`;
+                    });
+                    tagsHtml += '</div>';
+                }
+                
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="menu-item-img">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">${item.name}</h3>
+                            <span class="menu-item-price">$${item.price.toFixed(2)}</span>
+                        </div>
+                        <p class="menu-item-desc">${item.description}</p>
+                        ${tagsHtml}
+                        <button class="add-to-cart-btn" data-id="${item.id}">Add to Cart</button>
+                    </div>
+                `;
+                
+                menuItemsContainer.appendChild(itemElement);
+            });
+            
+            // Add event listeners to "Add to Cart" buttons
+            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemId = parseInt(this.getAttribute('data-id'));
+                    addToCart(itemId);
+                });
+            });
+        }
+
+        // Cart Functions
+        function addToCart(itemId) {
+            const item = menuItems.find(i => i.id === itemId);
+            if (!item) return;
+            
+            const existingItem = cart.find(i => i.id === itemId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: 1
+                });
+            }
+            
+            updateCartUI();
+            showNotification(`${item.name} added to cart!`);
+        }
+
+        function updateCartItem(itemId, newQuantity) {
+            const itemIndex = cart.findIndex(i => i.id === itemId);
+            
+            if (itemIndex !== -1) {
+                if (newQuantity <= 0) {
+                    cart.splice(itemIndex, 1);
+                } else {
+                    cart[itemIndex].quantity = newQuantity;
+                }
+                
+                updateCartUI();
+            }
+        }
+
+        function updateCartUI() {
+            // Save cart to localStorage
+            localStorage.setItem('gourmetHavenCart', JSON.stringify(cart));
+            
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Calculate subtotal
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const total = subtotal + deliveryFee;
+            
+            // Update cart modal
+            cartModalItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartModalItems.innerHTML = '<p style="text-align: center; color: var(--gray);">Your cart is empty</p>';
+                cartModalSubtotal.textContent = '$0.00';
+                cartModalTotal.textContent = '$0.00';
+                goToCheckoutBtn.disabled = true;
+            } else {
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <div>
+                            <h4>${item.name}</h4>
+                            <p>$${item.price.toFixed(2)}</p>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                        </div>
+                    `;
+                    cartModalItems.appendChild(itemElement);
+                });
+                
+                cartModalSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+                cartModalTotal.textContent = `$${total.toFixed(2)}`;
+                goToCheckoutBtn.disabled = false;
+                
+                // Add event listeners to quantity buttons
+                document.querySelectorAll('.quantity-btn.decrease').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const itemId = parseInt(this.getAttribute('data-id'));
+                        const item = cart.find(i => i.id === itemId);
+                        if (item) updateCartItem(itemId, item.quantity - 1);
+                    });
+                });
+                
+                document.querySelectorAll('.quantity-btn.increase').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const itemId = parseInt(this.getAttribute('data-id'));
+                        const item = cart.find(i => i.id === itemId);
+                        if (item) updateCartItem(itemId, item.quantity + 1);
+                    });
+                });
+            }
+            
+            // Update order summary section
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                emptyCartMessage.style.display = 'block';
+                cartTotal.textContent = '$0.00';
+                checkoutBtn.disabled = true;
+            } else {
+                emptyCartMessage.style.display = 'none';
+                
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <div>
+                            <h4>${item.name}</h4>
+                            <p>$${item.price.toFixed(2)}</p>
+                        </div>
+                        <div>
+                            <span>${item.quantity} x $${item.price.toFixed(2)} = $${(item.quantity * item.price).toFixed(2)}</span>
+                        </div>
+                    `;
+                    cartItems.appendChild(itemElement);
+                });
+                
+                cartTotal.textContent = `$${subtotal.toFixed(2)}`;
+                checkoutBtn.disabled = false;
+            }
+        }
+
+        // Cart Modal Toggle
+        cartIcon.addEventListener('click', function() {
+            cartModal.classList.add('active');
+        });
+
+        closeCartBtn.addEventListener('click', function() {
+            cartModal.classList.remove('active');
+        });
+
+        // Close cart modal when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!cartModal.contains(event.target) && !cartIcon.contains(event.target) && cartModal.classList.contains('active')) {
+                cartModal.classList.remove('active');
+            }
+        });
+
+        // Go to Checkout
+        goToCheckoutBtn.addEventListener('click', function() {
+            cartModal.classList.remove('active');
+            document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Order Form Submission
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (cart.length === 0) {
+                alert('Your cart is empty. Please add items before placing an order.');
+                return;
+            }
+            
+            // In a real application, you would send this data to a server
+            const formData = new FormData(orderForm);
+            const orderData = {
+                customer: {
+                    firstName: formData.get('firstName'),
+                    lastName: formData.get('lastName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    address: formData.get('address')
+                },
+                order: {
+                    items: cart,
+                    deliveryTime: formData.get('deliveryTime'),
+                    orderType: formData.get('orderType'),
+                    paymentMethod: formData.get('payment'),
+                    instructions: formData.get('instructions'),
+                    subtotal: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                    deliveryFee: deliveryFee,
+                    total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) + deliveryFee
+                }
+            };
+            
+            console.log('Order placed:', orderData);
+            
+            // Show success modal
+            successMessage.textContent = `Thank you for your order, ${orderData.customer.firstName}! Your order total is $${orderData.order.total.toFixed(2)}. You will receive a confirmation email shortly.`;
+            successModal.classList.add('active');
+            
+            // Clear cart and form
+            cart = [];
+            updateCartUI();
+            orderForm.reset();
+        });
+
+        // Reservation Form Submission
+        reservationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(reservationForm);
+            const reservationData = {
+                name: formData.get('reservationName'),
+                phone: formData.get('reservationPhone'),
+                date: formData.get('reservationDate'),
+                time: formData.get('reservationTime'),
+                guests: formData.get('guests'),
+                occasion: formData.get('occasion'),
+                notes: formData.get('reservationNotes')
+            };
+            
+            console.log('Reservation made:', reservationData);
+            
+            // Show success message
+            successMessage.textContent = `Thank you for your reservation, ${reservationData.name}! Your table for ${reservationData.guests} is confirmed for ${reservationData.date} at ${reservationData.time}. We look forward to serving you!`;
+            successModal.classList.add('active');
+            
+            // Clear form
+            reservationForm.reset();
+        });
+
+        // Newsletter Form Submission
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            console.log('Newsletter subscription:', email);
+            
+            // Show success message
+            successMessage.textContent = `Thank you for subscribing to our newsletter! You will receive our latest updates at ${email}.`;
+            successModal.classList.add('active');
+            
+            // Clear form
+            this.reset();
+        });
+
+        // Close Success Modal
+        closeSuccessBtn.addEventListener('click', function() {
+            successModal.classList.remove('active');
+        });
+
+        // Notification Function
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background-color: var(--success);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 4px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                z-index: 1003;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Add CSS for notification animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
